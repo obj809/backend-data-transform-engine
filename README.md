@@ -4,6 +4,10 @@
 
 FastAPI backend service for data transformation.
 
+## Tech Stack
+
+Python 3.10+ · FastAPI · Pydantic · Uvicorn · Docker
+
 ## Quick Start
 
 ```bash
