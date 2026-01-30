@@ -121,3 +121,12 @@ mypy . --verbose
 # Run all quality checks in sequence
 ruff check . && ruff format --check . && mypy . && pytest --cov=. --cov-report=term-missing
 ```
+
+## Git Hooks
+
+Install the pre-push hook to run tests automatically before each push:
+
+```bash
+cp scripts/pre-push .git/hooks/pre-push
+chmod +x .git/hooks/pre-push
+```
