@@ -1,4 +1,49 @@
+# Environment variables
 .env
+.env.local
+
+# Virtual environments
 venv
+.venv
+env
+ENV
+
+# Python cache
 __pycache__
+*.py[cod]
+*$py.class
+*.so
+
+# Testing
+.pytest_cache
+.coverage
+coverage.xml
+htmlcov/
+.tox/
+
+# Type checking
+.mypy_cache
+.dmypy.json
+dmypy.json
+
+# Ruff
+.ruff_cache
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation
 CLAUDE.md
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
