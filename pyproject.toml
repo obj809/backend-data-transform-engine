@@ -82,6 +82,11 @@ module = [
 ]
 ignore_missing_imports = true
 
+# Ignore Starlette middleware typing issue (differs between Python versions)
+[[tool.mypy.overrides]]
+module = "middleware"
+disable_error_code = ["arg-type"]
+
 # Pytest configuration
 [tool.pytest.ini_options]
 testpaths = ["tests"]
