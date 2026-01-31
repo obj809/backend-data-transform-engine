@@ -1,10 +1,13 @@
 import json
+import logging
 from typing import Any
 
 from fastapi import FastAPI, HTTPException, UploadFile
 
 from middleware import setup_cors
-from processor import process_stock_data
+from worker_client import WorkerError, process_with_worker
+
+logger = logging.getLogger(__name__)
 
 app = FastAPI()
 setup_cors(app)
@@ -38,8 +41,8 @@ async def upload_file(file: UploadFile) -> dict[str, Any]:
         raise HTTPException(status_code=400, detail="Expected a JSON array of records")
 
     try:
-        result = process_stock_data(data)
-    except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e)) from None
-
-    return result
+        result = await process_with_worker(data)
+        return result
+    except WorkerError as e:
+        logger.warning("Worker processing failed: %s", e)
+        raise HTTPException(status_code=503, detail="Worker unavailable") from None
